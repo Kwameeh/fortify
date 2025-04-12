@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { getProjectBySlug, getAllProjects } from "@/sanity/queries/project";
+import { getProjectBySlug } from "@/sanity/queries/project";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
 import Link from "next/link";
@@ -41,13 +41,13 @@ export async function generateMetadata({
 }
 
 // Generate static paths at build time
-export async function generateStaticParams() {
-  const projects = await getAllProjects();
+// export async function generateStaticParams() {
+//   const projects = await getAllProjects();
 
-  return projects.map((project) => ({
-    slug: project.slug?.current || "",
-  }));
-}
+//   return projects.map((project) => ({
+//     slug: project.slug?.current || "",
+//   }));
+// }
 
 export default async function ProjectPage({
   params,
