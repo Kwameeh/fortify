@@ -52,7 +52,7 @@ interface SanityPost {
 }
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 // Generate metadata for the blog post
@@ -162,7 +162,11 @@ const componentsTest: PortableTextComponents = {
   },
 };
 
-const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
+const BlogDetailPage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
   const { slug } = await params;
   const data = (await getPostBySlug(slug)) as SanityPost;
 
