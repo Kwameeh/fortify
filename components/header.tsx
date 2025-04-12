@@ -3,6 +3,7 @@ import headerData from "@/data/header.json";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const HeaderComponent = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -21,41 +22,113 @@ const HeaderComponent = () => {
   }, [scrolled]);
 
   const toggleMenu = () => {
-    console.log("click");
     setShowMenu((prev) => !prev);
   };
+
   return (
-    <header
-      className={`flex justify-between items-center px-6 fixed z-10 w-full transition-all duration-300 ${scrolled ? "bg-black" : "bg-transparent"}`}>
-      <div className=" flex justify-between w-full items-center py-3 border-b-2 border-white">
-        <Link href="/" className="font-bebas text-white text-xl">
-          <Image src="/logo.png" alt="logo" width={100} height={100} />
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed z-10 w-full transition-all duration-500  ${
+        scrolled ? "bg-black/90 backdrop-blur-sm py-2" : "bg-transparent py-4"
+      }`}>
+      <div className="max-w-9xl mx-auto flex items-center justify-between px-6 border-b border-white/20">
+        <Link href="/" className="relative z-20">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.2 }}>
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={100}
+              height={100}
+              className="h-12 w-12 md:h-16 md:w-16 object-contain"
+            />
+          </motion.div>
         </Link>
 
-        <ul
-          className={`flex flex-col duration-300 sm:flex-row absolute right-0 bg-black w-screen h-screen sm:h-fit sm:w-fit sm:top-0 sm:relative sm:bg-transparent gap-6 justify-center items-center ${showMenu ? "top-0" : "-top-[100vh]"} `}>
-          {headerData.header.map((item) => {
-            return (
-              <li key={item.href} className="text-white text-base uppercase">
-                <Link href={item.href}>{item.label}</Link>
-              </li>
-            );
-          })}
-        </ul>
-        <div>
-          <button
-            onClick={() => toggleMenu()}
-            className="text-white sm:hidden z-20 relative">
+        {/* Desktop Navigation */}
+        <div className="hidden md:block">
+          <motion.ul className="flex items-center justify-center gap-8">
+            {headerData.header.map((item) => (
+              <motion.li
+                key={item.href}
+                whileHover={{ scale: 1.05 }}
+                className="text-white text-base uppercase tracking-wider">
+                <Link
+                  href={item.href}
+                  className="hover:text-gray-300 transition-colors duration-300 pb-1 border-b-2 border-transparent hover:border-white/40">
+                  {item.label}
+                </Link>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
+
+        {/* Mobile Navigation */}
+        <motion.div
+          initial={false}
+          animate={showMenu ? { opacity: 1 } : { opacity: 0 }}
+          className={`md:hidden fixed inset-0 bg-black/95 z-10 ${
+            showMenu ? "pointer-events-auto" : "pointer-events-none"
+          }`}>
+          <div className="h-full flex flex-col items-center justify-center">
+            <motion.ul className="flex flex-col items-center justify-center gap-8">
+              {headerData.header.map((item) => (
+                <motion.li
+                  key={item.href}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-white text-xl uppercase tracking-wider">
+                  <Link
+                    href={item.href}
+                    onClick={() => setShowMenu(false)}
+                    className="hover:text-gray-300 transition-colors duration-300 pb-1 border-b-2 border-transparent hover:border-white/40">
+                    {item.label}
+                  </Link>
+                </motion.li>
+              ))}
+              <motion.li className="mt-6">
+                <Link href="/contact" onClick={() => setShowMenu(false)}>
+                  <motion.button
+                    whileHover={{
+                      scale: 1.05,
+                      backgroundColor: "rgba(255,255,255,1)",
+                      color: "#000",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="font-bebas border border-white/70 rounded-full px-6 py-2 text-white text-base tracking-wider transition-all duration-300">
+                    Contact Us
+                  </motion.button>
+                </Link>
+              </motion.li>
+            </motion.ul>
+          </div>
+        </motion.div>
+
+        <div className="flex items-center gap-4">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={toggleMenu}
+            className="text-white md:hidden z-20 relative border border-white/30 rounded-full px-3 py-1 text-sm hover:bg-white/10 transition-all duration-300">
             {showMenu ? "Close" : "Menu"}
-          </button>
-          <Link href="/contact">
-            <button className="sm:block font-bebas hidden border-2 border-white rounded-full px-3 py-1 text-white hover:bg-white hover:text-black duration-300">
+          </motion.button>
+
+          <Link href="/contact" className="hidden md:block">
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: "rgba(255,255,255,1)",
+                color: "#000",
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="font-bebas border border-white/70 rounded-full px-5 py-1.5 text-white text-sm tracking-wider transition-all duration-300">
               Contact Us
-            </button>
+            </motion.button>
           </Link>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

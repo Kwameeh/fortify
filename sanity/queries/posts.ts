@@ -34,6 +34,7 @@ export const POST_BY_SLUG_QUERY =
   body,
   mainImage,
   publishedAt,
+  description,
   "categories": categories[]->{ 
     _id,
     title,

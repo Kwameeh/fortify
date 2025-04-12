@@ -24,7 +24,7 @@ export default async function Home() {
               return (
                 <Link
                   key={index}
-                  href="/works"
+                  href={`/services/${expertise.slug?.current}`}
                   className="h-full w-full border-2 border-black p-6 group sm:w-1/2 flex items-center justify-center flex-col">
                   <span className="text-2xl relative z-10 text-black font-bebas ">
                     {expertise.heading}
