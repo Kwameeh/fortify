@@ -2,11 +2,19 @@ import { defineField, defineType } from "sanity";
 
 export const videoType = defineType({
   name: "video",
-  type: "object",
+  type: "document",
   fields: [
     defineField({
       name: "videoLabel",
       type: "string",
+    }),
+    defineField({
+      name: "videoType",
+      type: "string",
+      title: "Video Type",
+      options: {
+        list: ["home", "about", "services", "contact"],
+      },
     }),
     defineField({
       name: "url",
@@ -14,4 +22,10 @@ export const videoType = defineType({
       title: "URL",
     }),
   ],
+  preview: {
+    select: {
+      title: "videoLabel",
+      subtitle: "videoType",
+    },
+  },
 });

@@ -1,13 +1,29 @@
 import { defineField, defineType } from "sanity";
 
-const sectionImageOverlay = defineType({
+export const sectionImageOverlay = defineType({
   name: "sectionImageOverlay",
-  type: "object",
+  type: "document",
   title: "Image overlay text",
   fields: [
     defineField({
       name: "heading",
       type: "string",
+    }),
+    defineField({
+      name: "pageType",
+      type: "string",
+      title: "Page Type",
+      options: {
+        list: [
+          "home",
+          "about",
+          "services",
+          "contact",
+          "blog",
+          "news",
+          "our work",
+        ],
+      },
     }),
     defineField({
       name: "tagline",
@@ -26,6 +42,11 @@ const sectionImageOverlay = defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: "heading",
+      subtitle: "pageType",
+      media: "image",
+    },
+  },
 });
-
-export default sectionImageOverlay;

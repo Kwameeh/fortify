@@ -10,6 +10,22 @@ export const promotionType = defineType({
       type: "string",
     }),
     defineField({
+      name: "promotionType",
+      type: "string",
+      title: "Promotion Type",
+      options: {
+        list: [
+          "home",
+          "about",
+          "services",
+          "contact",
+          "blog",
+          "news",
+          "our work",
+        ],
+      },
+    }),
+    defineField({
       name: "label",
       type: "string",
     }),
@@ -18,4 +34,10 @@ export const promotionType = defineType({
       type: "url",
     }),
   ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "promotionType",
+    },
+  },
 });

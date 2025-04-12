@@ -1,8 +1,8 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
-const projectType = defineType({
+export const projectType = defineType({
   name: "project",
-  type: "object",
+  type: "document",
   title: "Project Information",
   fields: [
     defineField({
@@ -10,11 +10,32 @@ const projectType = defineType({
       type: "string",
     }),
     defineField({
+      name: "slug",
+      type: "slug",
+      options: {
+        source: "projectname",
+      },
+    }),
+    defineField({
       name: "tagline",
       type: "string",
     }),
     defineField({
+      name: "services",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: [{ type: "expertises" }],
+        }),
+      ],
+    }),
+    defineField({
       name: "excerpt",
+      type: "text",
+    }),
+    defineField({
+      name: "description",
       type: "text",
     }),
     defineField({
@@ -27,28 +48,20 @@ const projectType = defineType({
       type: "url",
       description: `Can be a path starting with a '/' or a full Url starting with 'http://' or 'https://'`,
     }),
-    {
-      name: "images",
+    defineField({
+      name: "mainImage",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: "Images",
       type: "array",
-      of: [
-        defineField({
-          name: "image",
-          type: "image",
-          options: { hotspot: true },
-          fields: [
-            {
-              name: "alt",
-              type: "string",
-              title: "Alternative text",
-            },
-          ],
-        }),
-      ],
+      of: [{ type: "image" }],
       options: {
         layout: "grid",
       },
-    },
+    }),
   ],
 });
-
-export default projectType;

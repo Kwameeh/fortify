@@ -1,6 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-const pageType = defineType({
+export const pageType = defineType({
   name: "page",
   type: "document",
   title: "Page",
@@ -8,53 +8,62 @@ const pageType = defineType({
     defineField({ name: "title", type: "string" }),
     defineField({
       name: "slug",
-      type: "string",
-      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+      },
     }),
     defineField({
       name: "pageBuilder",
       type: "array",
-      title: "Page builder",
+      title: "Page Builder Components",
+      description:
+        "Add, edit, and reorder page sections by selecting from the available components below",
       of: [
-        defineArrayMember({
+        defineField({
           name: "hero",
-          type: "hero",
+          type: "reference",
+          title: "Hero Section",
+
+          to: [{ type: "hero" }],
         }),
-        defineArrayMember({
+        defineField({
           name: "textWithIllustration",
-          type: "textWithIllustration",
+          type: "reference",
+          title: "Text with Illustration",
+          to: [{ type: "textWithIllustration" }],
         }),
-        defineArrayMember({
-          name: "gallery",
-          type: "gallery",
+        defineField({
+          name: "galleryReference",
+          type: "reference",
+          title: "Gallery Reference",
+          to: [{ type: "gallery" }],
         }),
-        defineArrayMember({
+        defineField({
           name: "form",
-          type: "form",
+          type: "reference",
+          title: "Form Component",
+          to: [{ type: "form" }],
         }),
-        defineArrayMember({
-          name: "video",
-          type: "video",
+        defineField({
+          name: "videoReference",
+          type: "reference",
+          title: "Video Reference",
+          to: [{ type: "video" }],
         }),
-        defineArrayMember({
+        defineField({
           name: "callToAction",
           type: "reference",
+          title: "Call to Action",
           to: [{ type: "promotion" }],
         }),
-        defineArrayMember({
-          name: "project",
-          type: "project",
-        }),
-        defineArrayMember({
-          name: "expertises",
-          type: "expertises",
-        }),
-        defineArrayMember({
+        defineField({
           name: "sectionImageOverlay",
-          type: "sectionImageOverlay",
+          type: "reference",
+          title: "Section with Image Overlay",
+          to: [{ type: "sectionImageOverlay" }],
         }),
       ],
     }),
   ],
 });
-export default pageType;

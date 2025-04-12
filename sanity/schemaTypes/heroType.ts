@@ -3,7 +3,7 @@ import { defineField, defineType } from "sanity";
 
 export const heroType = defineType({
   name: "hero",
-  type: "object",
+  type: "document",
   title: "Hero",
   fields: [
     defineField({
@@ -12,7 +12,26 @@ export const heroType = defineType({
     }),
     defineField({
       name: "slug",
+      type: "slug",
+      options: {
+        source: "heading",
+      },
+    }),
+    defineField({
+      name: "pageType",
       type: "string",
+      title: "Page Type",
+      options: {
+        list: [
+          "home",
+          "about",
+          "services",
+          "contact",
+          "blog",
+          "news",
+          "our work",
+        ],
+      },
     }),
     defineField({
       name: "tagline",
@@ -35,14 +54,8 @@ export const heroType = defineType({
   preview: {
     select: {
       title: "heading",
-      image: "image",
-    },
-    prepare({ title, image }) {
-      return {
-        title: title || "Untitled",
-        subtitle: "Hero",
-        media: image || DocumentTextIcon,
-      };
+      subtitle: "pageType",
+      media: "image",
     },
   },
 });

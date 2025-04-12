@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-const expertisesType = defineType({
+export const expertisesType = defineType({
   name: "expertises",
-  type: "object",
+  type: "document",
   title: "Expertises",
   fields: [
     defineField({
@@ -12,6 +12,9 @@ const expertisesType = defineType({
     defineField({
       name: "slug",
       type: "slug",
+      options: {
+        source: "heading",
+      },
     }),
     defineField({
       name: "tagline",
@@ -20,6 +23,11 @@ const expertisesType = defineType({
     defineField({
       name: "excerpt",
       type: "text",
+    }),
+    defineField({
+      name: "body",
+      title: "Body",
+      type: "blockContent",
     }),
     defineField({
       name: "link",
@@ -39,5 +47,3 @@ const expertisesType = defineType({
     }),
   ],
 });
-
-export default expertisesType;

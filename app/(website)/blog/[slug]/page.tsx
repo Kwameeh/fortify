@@ -3,16 +3,54 @@ export const revalidate = 0;
 import { PortableText } from "@portabletext/react";
 
 import { client } from "@/sanity/lib/client";
-import { getDetailPost } from "@/sanity/queries/posts";
-import { PortableTextComponents } from "@portabletext/react";
+import { getPostBySlug } from "@/sanity/queries/posts";
+import { PortableTextComponents, PortableTextBlock } from "@portabletext/react";
 import { default as imageUrlBuilder } from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 import Image from "next/image";
 import Link from "next/link";
 
+// Define types for Sanity data
+interface SanityImageAsset {
+  _ref: string;
+  _type: "reference";
+}
+
+interface SanityImage {
+  _type: "image";
+  asset?: SanityImageAsset;
+  alt?: string;
+}
+
+interface CategorySlug {
+  current: string;
+}
+
+interface Category {
+  _id: string;
+  title: string | null;
+  slug: CategorySlug | null;
+}
+
+interface Author {
+  name: string | null;
+  image?: SanityImage;
+}
+
+interface SanityPost {
+  _id: string;
+  title: string | null;
+  mainImage: SanityImage | null;
+  body: PortableTextBlock[] | null;
+  publishedAt: string | null;
+  categories: Category[] | null;
+  author?: Author;
+}
+
 const builder = imageUrlBuilder(client);
 
-function urlFor(source: any) {
+function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 const componentsTest: PortableTextComponents = {
@@ -31,18 +69,21 @@ const componentsTest: PortableTextComponents = {
     ),
   },
   types: {
-    image: ({ value }) => (
-      <div className="sm:h-[45vh] aspect-auto w-full h-[33vh]  mb-6">
-        <Image
-          src={urlFor(value).url()}
-          alt={value.alt || " "}
-          width={320}
-          height={450}
-          className="w-full h-full object-cover"
-          loading="lazy"
-        />
-      </div>
-    ),
+    image: ({ value }) => {
+      const imageValue = value as SanityImage;
+      return (
+        <div className="sm:h-[45vh] aspect-auto w-full h-[33vh] mb-6">
+          <Image
+            src={urlFor(imageValue).url()}
+            alt={imageValue.alt || " "}
+            width={320}
+            height={450}
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      );
+    },
   },
   marks: {
     em: ({ children }) => (
@@ -56,8 +97,7 @@ const componentsTest: PortableTextComponents = {
         <Link
           href={value?.href}
           target={target}
-          className=" font-bold underline text-yellow-300"
-        >
+          className=" font-bold underline text-yellow-300">
           {children}
         </Link>
       );
@@ -83,31 +123,28 @@ const componentsTest: PortableTextComponents = {
 const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = params;
 
-  const data = await getDetailPost(slug);
+  const data = (await getPostBySlug(slug)) as SanityPost;
 
   return (
     <section
       id="section"
-      className="py-24 sm:py-24 relative w-full justify-center flex items-center bg-black"
-    >
+      className="py-24 sm:py-24 relative w-full justify-center flex items-center bg-black">
       <div
         id="container"
-        className=" px-6 sm:px-24 w-full h-full flex flex-col items-center"
-      >
+        className=" px-6 sm:px-24 w-full h-full flex flex-col items-center">
         <div className="flex flex-col w-full">
           <div className="flex flex-col sm:flex-row text-white border-b-white border-b-2 pb-5 justify-between items-start sm:items-center">
             <div>
-              <p>{data.author}</p>
-              <p>{data.publishedAt}</p>
+              <p>{data?.author?.name}</p>
+              <p>{data?.publishedAt}</p>
             </div>
             <div className="flex flex-wrap">
-              {data.categories.map((category: string, index: number) => {
+              {data?.categories?.map((category, index) => {
                 return (
                   <p
                     className="border-2 border-white rounded-full px-6 py-2"
-                    key={index}
-                  >
-                    {category}
+                    key={index}>
+                    {category.title}
                   </p>
                 );
               })}
@@ -115,22 +152,26 @@ const BlogDetailPage = async ({ params }: { params: { slug: string } }) => {
           </div>
           <div className="py-6">
             <h1 className="text-6xl text-white font-bebas leading-none">
-              {data.title}
+              {data?.title}
             </h1>
           </div>
           <div className="aspect-auto h-[45vh] sm:h-auto w-full">
-            <Image
-              src={data.imageUrl}
-              alt={data.slug.current || ""}
-              width={420}
-              height={600}
-              className="w-full h-full"
-            />
+            {data?.mainImage && (
+              <Image
+                src={urlFor(data.mainImage).url()}
+                alt={data?.title || ""}
+                width={420}
+                height={600}
+                className="w-full h-full"
+              />
+            )}
           </div>
         </div>
 
         <div className="text-white w-full sm:w-[60vw] flex justify-center items-start flex-col">
-          <PortableText value={data.body} components={componentsTest} />
+          {data?.body && (
+            <PortableText value={data.body} components={componentsTest} />
+          )}
         </div>
       </div>
     </section>

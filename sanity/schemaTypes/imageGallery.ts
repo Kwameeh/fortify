@@ -1,10 +1,42 @@
 import { defineField, defineType } from "sanity";
 
-const imageGalleryType = defineType({
+export const imageGalleryType = defineType({
   name: "gallery",
-  type: "object",
+  type: "document",
   title: "Gallery",
   fields: [
+    {
+      name: "title",
+      type: "string",
+      title: "Title",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "pageType",
+      type: "string",
+      title: "Page Type",
+      options: {
+        list: [
+          "home",
+          "about",
+          "services",
+          "contact",
+          "blog",
+          "news",
+          "our work",
+        ],
+      },
+    },
+    {
+      name: "slug",
+      type: "slug",
+      title: "Slug",
+      options: {
+        source: "title",
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    },
     {
       name: "images",
       type: "array",
@@ -27,6 +59,10 @@ const imageGalleryType = defineType({
       },
     },
   ],
+  preview: {
+    select: {
+      title: "title",
+      subtitle: "pageType",
+    },
+  },
 });
-
-export default imageGalleryType;

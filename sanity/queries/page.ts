@@ -1,170 +1,179 @@
 import { groq } from "next-sanity";
+import { defineQuery } from "next-sanity";
 import { client } from "../lib/client";
 
-export type ContentType = {
-  type: string;
-  excerpt: string;
-  heading: string;
-  image: {
-    _type: string;
-    asset: any;
-  };
-};
-
-export type ProjectType = {
-  type: string;
-  excerpt: string;
-  projectname: string;
-  tagline: string;
-  location: string;
-  url: string;
-  imageUrls: ImageType[];
-};
-export type ImageType = {
-  url: string;
-};
-export async function getHomepage() {
-  const getPageQuery = groq`*[_type == "page"][slug == 'home'][0]{
-    'Heading':title,
+// GROQ query to fetch a page by its slug with all pageBuilder components
+export const pageBySlugQuery = defineQuery(
+  groq`*[_type == "page" && slug.current == $slug][0]{
+    _id,
+    title,
     slug,
-    'Hero':pageBuilder[][_type == "hero"][0]{
-      'heroImage':image.asset->url,
-      heading,
-      tagline
-    },
-      'Content':pageBuilder[][_type == "textWithIllustration"][0]{
-      "type": _type,
-      excerpt,
-      tagline,
-      heading,
-      image
-    
-    },
-      'SectionImageOverlay':pageBuilder[][_type == "sectionImageOverlay"][0]{
-      "type": _type,
-      heading,
-      'imageOverlay':image.asset->url,
-  
-    },
-        'Expertises':pageBuilder[][_type == "expertises"]{
-      "type": _type,
-      excerpt,
-      heading,
-      'url':image.asset->url
-    },
-    
-      'Gallery':pageBuilder[][_type == "gallery"][0]{
+    // Basic content for all component types
+    pageBuilder[]{
       _type,
-      'imageUrls':images[].asset->{
-        'url':url
+      _key,
+      _ref
+    },
+    // Expanded references for each component type
+    "hero": pageBuilder[_type == "hero"][0]{
+      ...*[_type == "hero" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
       }
     },
-  
-}`;
-
-  return await client.fetch(getPageQuery, {
-    revalidate: new Date().getSeconds(),
-  });
-}
-
-export async function getServicesPage(slug: string) {
-  const getPageQuery = groq`*[_type == "page" && slug.current == ${slug}][0]{
-    
-    'Heading':title,
-    'Content':pageBuilder[][_type == "textWithIllustration"]{
-      "type": _type,
-      excerpt,
-      heading,
-      image
-    
-    },
-    'Gallery':pageBuilder[][_type == "gallery"][0]{
-      _type,
-      'imageUrls':images[].asset->{
-        'url':url
+    "textWithIllustration": pageBuilder[_type == "textWithIllustration"][0]{
+      ...*[_type == "textWithIllustration" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
       }
     },
-
-      'CallToAction':pageBuilder[][_type == "callToAction"][0]{
-      _type == "callToAction" => @-> {
-      _type,
-      title,
-      link
+    "gallery": pageBuilder[_type == "galleryReference"][0]{
+      ...*[_type == "gallery" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "form": pageBuilder[_type == "form"][0]{
+      ...*[_type == "form" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "video": pageBuilder[_type == "videoReference"][0]{
+      ...*[_type == "video" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "promotion": pageBuilder[_type == "callToAction"][0]{
+      ...*[_type == "promotion" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "sectionImageOverlay": pageBuilder[_type == "sectionImageOverlay"][0]{
+      ...*[_type == "sectionImageOverlay" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
     }
-        },
-    'Video':pageBuilder[][_type == "video"][0]{
-     videoLabel,
-     url
-    },
-      'FormContact':pageBuilder[][_type == "form"][0]{
-     label,
-     heading,
-     form
-    },
-}`;
+  }`
+);
 
-  return await client.fetch(getPageQuery, {
-    revalidate: new Date().getSeconds(),
-  });
-}
-
-export async function getWorksPage() {
-  const getPageQuery = groq`*[_type == "page"][slug == 'works'][0]{
-    'Heading':title,
+// Function to fetch a page by slug
+export async function getPageBySlug(slug: string) {
+  const pageBySlugQueryC = defineQuery(
+    groq`*[_type == "page" && slug.current == $slug][0]{
+    _id,
+    title,
     slug,
-    'Hero':pageBuilder[][_type == "hero"][0]{
-      'heroImage':image.asset->url,
-      heading,
-      tagline
+    // Basic content for all component types
+    pageBuilder[]{
+      _type,
+      _key,
+      _ref
     },
-    
-    'Content':pageBuilder[][_type == "project"]{
-      "type": _type,
-      excerpt,
-      tagline,
-      projectname,
-      location,
-      url,
-     'imageUrls':images[].asset->{
-        'url':url
+    // Expanded references for each component type
+    "hero": pageBuilder[_type == "hero"][0]{
+      ...*[_type == "hero" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
       }
     },
-    
-
-          'CallToAction':pageBuilder[][_type == "callToAction"][0]{
-      _type == "callToAction" => @-> {
-      _type,
-      title,
-      label,
-      link
+    "textWithIllustration": pageBuilder[_type == "textWithIllustration"][0]{
+      ...*[_type == "textWithIllustration" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "gallery": pageBuilder[_type == "galleryReference"][0]{
+      ...*[_type == "gallery" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "form": pageBuilder[_type == "form"][0]{
+      ...*[_type == "form" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "video": pageBuilder[_type == "videoReference"][0]{
+      ...*[_type == "video" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "promotion": pageBuilder[_type == "callToAction"][0]{
+      ...*[_type == "promotion" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
+    },
+    "sectionImageOverlay": pageBuilder[_type == "sectionImageOverlay"][0]{
+      ...*[_type == "sectionImageOverlay" && _id == ^._ref][0]{
+        _id,
+        _type,
+        _key,
+        ...
+      }
     }
+  }`
+  );
+  if (!slug) {
+    throw new Error("Slug is required to fetch a page");
   }
-  
-}`;
 
-  return await client.fetch(getPageQuery, {
-    revalidate: new Date().getSeconds(),
-  });
+  const page = await client.fetch(pageBySlugQueryC, { slug });
+  return page;
 }
 
-export async function getGalleryPage() {
-  const getPageQuery = groq`*[_type == "page"][slug == 'gallery'][0]{
-    'Heading':title,
-    slug,
-    
-     'Gallery':pageBuilder[][_type == "gallery"][0]{
-      _type,
-      'imageUrls':images[].asset->{
-        'url':url
-      }
-    },
-    
+// GROQ query to fetch all pages (basic info only)
+export const allPagesQuery = defineQuery(
+  groq`*[_type == "page"]{
+    _id,
+    title,
+    slug
+  }`
+);
 
-  
-  
-}`;
+export async function getAllPages() {
+  return client.fetch(allPagesQuery);
+}
 
-  return await client.fetch(getPageQuery, {
-    revalidate: new Date().getSeconds(),
-  });
+// GROQ query to fetch all page paths for static generation
+export const allPagePathsQuery = defineQuery(
+  groq`*[_type == "page" && defined(slug.current)][]{
+    "params": { "slug": slug.current }
+  }`
+);
+
+export async function getAllPagePaths() {
+  return client.fetch(allPagePathsQuery);
 }

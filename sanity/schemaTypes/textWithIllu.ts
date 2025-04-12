@@ -1,8 +1,8 @@
 import { defineField, defineType } from "sanity";
 
-const textWithIllustrationType = defineType({
+export const textWithIllustrationType = defineType({
   name: "textWithIllustration",
-  type: "object",
+  type: "document",
   title: "Text with Illustration",
   fields: [
     defineField({
@@ -18,6 +18,14 @@ const textWithIllustrationType = defineType({
       type: "text",
     }),
     defineField({
+      name: "pageType",
+      type: "string",
+      title: "Page Type",
+      options: {
+        list: ["home", "about", "services", "contact"],
+      },
+    }),
+    defineField({
       name: "image",
       type: "image",
       options: { hotspot: true },
@@ -30,6 +38,11 @@ const textWithIllustrationType = defineType({
       ],
     }),
   ],
+  preview: {
+    select: {
+      title: "heading",
+      subtitle: "pageType",
+      media: "image",
+    },
+  },
 });
-
-export default textWithIllustrationType;
