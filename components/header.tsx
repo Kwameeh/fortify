@@ -69,15 +69,29 @@ const HeaderComponent = () => {
         {/* Mobile Navigation */}
         <motion.div
           initial={false}
-          animate={showMenu ? { opacity: 1 } : { opacity: 0 }}
-          className={`md:hidden fixed inset-0 bg-black/95 z-10 ${
+          animate={showMenu ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}
+          className={`md:hidden fixed inset-0 bg-black z-50 ${
             showMenu ? "pointer-events-auto" : "pointer-events-none"
           }`}>
-          <div className="h-full flex flex-col items-center justify-center">
+          <div className="h-full flex flex-col items-center justify-center relative">
+            {/* Close button */}
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowMenu(false)}
+              className="absolute top-6 right-6 text-white text-2xl hover:text-gray-300 transition-colors duration-300 z-60">
+              ✕
+            </motion.button>
+
             <motion.ul className="flex flex-col items-center justify-center gap-8">
-              {headerData.header.map((item) => (
+              {headerData.header.map((item, index) => (
                 <motion.li
                   key={item.href}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    showMenu ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                  }
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
                   whileHover={{ scale: 1.05 }}
                   className="text-white text-xl uppercase tracking-wider">
                   <Link
@@ -88,7 +102,13 @@ const HeaderComponent = () => {
                   </Link>
                 </motion.li>
               ))}
-              <motion.li className="mt-6 flex flex-col gap-4">
+              <motion.li
+                className="mt-6 flex flex-col gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={
+                  showMenu ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
+                }
+                transition={{ delay: 0.5, duration: 0.3 }}>
                 <Link href="/booking" onClick={() => setShowMenu(false)}>
                   <motion.button
                     whileHover={{
@@ -122,7 +142,7 @@ const HeaderComponent = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={toggleMenu}
-            className="text-white md:hidden z-20 relative border border-white/30 rounded-full px-3 py-1 text-sm hover:bg-white/10 transition-all duration-300">
+            className="text-white md:hidden z-60 relative border border-white/30 rounded-full px-3 py-1 text-sm hover:bg-white/10 transition-all duration-300">
             {showMenu ? "Close" : "Menu"}
           </motion.button>
 
