@@ -79,7 +79,7 @@ export default function Contact() {
     <>
       <section className="w-full h-[500px] relative mb-16 overflow-hidden rounded-lg">
         <Image
-          src="/images/coffees.jpg"
+          src="/images/light.jpeg"
           alt="Contact Fortify Productions"
           fill
           className="object-cover"

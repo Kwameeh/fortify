@@ -6,7 +6,7 @@ export default function Booking() {
     <>
       <section className="w-full h-[500px] relative mb-16 overflow-hidden rounded-lg">
         <Image
-          src="/images/coffees.jpg"
+          src="/images/light.jpeg"
           alt="Book Your Event with Fortify Productions"
           fill
           className="object-cover"
