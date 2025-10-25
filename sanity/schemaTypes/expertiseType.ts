@@ -45,5 +45,11 @@ export const expertisesType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: "order",
+      type: "number",
+      title: "Order",
+      description: "Order number for sorting (0-2 for home page display)",
+    }),
   ],
 });

@@ -176,11 +176,18 @@ export default async function ProjectPage({
               <h2 className="text-5xl text-white font-bebas leading-none max-w-96">
                 Ready to start your project?
               </h2>
-              <Link
-                href="/contact"
-                className="mt-6 inline-block px-6 font-bebas py-3 w-fit border-white border-2 text-xl hover:bg-white hover:text-black duration-300 text-white">
-                Get in touch
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                <Link
+                  href="/booking"
+                  className="inline-block px-6 font-bebas py-3 w-fit bg-white text-black text-xl hover:bg-gray-200 duration-300">
+                  Book Your Event
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-block px-6 font-bebas py-3 w-fit border-white border-2 text-xl hover:bg-white hover:text-black duration-300 text-white">
+                  Get in touch
+                </Link>
+              </div>
             </div>
           </div>
         </div>

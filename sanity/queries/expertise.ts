@@ -9,6 +9,7 @@ export const ALL_EXPERTISES_QUERY = defineQuery(`*[_type == "expertises"]{
   tagline,
   excerpt,
   link,
+  order,
   image {
     asset->{
       _id,
@@ -28,6 +29,7 @@ export const EXPERTISE_BY_SLUG_QUERY =
   excerpt,
   body,
   link,
+  order,
   image {
     asset->{
       _id,
@@ -46,6 +48,7 @@ export const FEATURED_EXPERTISES_QUERY =
   tagline,
   excerpt,
   link,
+  order,
   image {
     asset->{
       _id,
@@ -64,7 +67,27 @@ export const EXPERTISES_LIMIT_QUERY =
   tagline,
   excerpt,
   link,
+  order,
   image
+}`);
+
+// Query to get expertises ordered by order field (0-2)
+export const EXPERTISES_ORDERED_QUERY =
+  defineQuery(`*[_type == "expertises" && order >= 0 && order <= 2] | order(order asc){
+  _id,
+  heading,
+  slug,
+  tagline,
+  excerpt,
+  link,
+  order,
+  image {
+    asset->{
+      _id,
+      url
+    },
+    alt
+  }
 }`);
 
 // Query functions
@@ -100,5 +123,13 @@ export async function getFeaturedExpertises() {
  */
 export async function getExpertisesWithLimit(limit: number) {
   const expertises = await client.fetch(EXPERTISES_LIMIT_QUERY, { limit });
+  return expertises;
+}
+
+/**
+ * Fetches expertise entries ordered by order field (0-2)
+ */
+export async function getOrderedExpertises() {
+  const expertises = await client.fetch(EXPERTISES_ORDERED_QUERY);
   return expertises;
 }

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import {
   FaInstagram,
   FaWhatsapp,
@@ -9,7 +12,69 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 
+interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
 export default function Contact() {
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <section className="w-full h-[500px] relative mb-16 overflow-hidden rounded-lg">
@@ -126,7 +191,7 @@ export default function Contact() {
           {/* Contact Form */}
           <div className="border-2 border-black p-8 rounded-lg">
             <h2 className="text-3xl font-bebas mb-6">Send Us a Message</h2>
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label
                   htmlFor="name"
@@ -137,6 +202,8 @@ export default function Contact() {
                   type="text"
                   id="name"
                   name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="John Doe"
                   required
@@ -153,6 +220,8 @@ export default function Contact() {
                   type="email"
                   id="email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="john@example.com"
                   required
@@ -169,6 +238,8 @@ export default function Contact() {
                   type="text"
                   id="subject"
                   name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
                   className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="How can we help you?"
                   required
@@ -184,6 +255,8 @@ export default function Contact() {
                 <textarea
                   id="message"
                   name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
                   rows={5}
                   className="w-full px-4 py-3 border-2 border-black focus:outline-none focus:ring-2 focus:ring-black"
                   placeholder="Tell us more about your project..."
@@ -192,9 +265,27 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 transition-colors duration-300 w-full">
-                Send Message
+                disabled={isSubmitting}
+                className="bg-black text-white px-8 py-3 font-medium hover:bg-gray-800 transition-colors duration-300 w-full disabled:opacity-50 disabled:cursor-not-allowed">
+                {isSubmitting ? "Sending..." : "Send Message"}
               </button>
+
+              {/* Status Messages */}
+              {submitStatus === "success" && (
+                <div className="text-center p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                  <p className="font-medium">Message sent successfully!</p>
+                  <p>We'll get back to you within 24 hours.</p>
+                </div>
+              )}
+
+              {submitStatus === "error" && (
+                <div className="text-center p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                  <p className="font-medium">
+                    There was an error sending your message.
+                  </p>
+                  <p>Please try again or contact us directly.</p>
+                </div>
+              )}
             </form>
           </div>
         </section>

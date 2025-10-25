@@ -58,6 +58,13 @@ const FooterComponent = () => {
               </li>
               <li>
                 <Link
+                  href="/booking"
+                  className="text-gray-200 hover:text-white transition-colors duration-300">
+                  Book Now
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contact"
                   className="text-gray-200 hover:text-white transition-colors duration-300">
                   Contact
@@ -128,6 +135,31 @@ const FooterComponent = () => {
                 className="bg-transparent text-white border border-white p-3 rounded-full hover:bg-white hover:text-black transition-all duration-300"
                 aria-label="TikTok">
                 <FaTiktok size={24} />
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Booking CTA Section */}
+        <div className="bg-gray-900 rounded-lg p-8 mt-8 mb-8">
+          <div className="text-center">
+            <h3 className="text-3xl font-bebas mb-4">
+              Ready to Book Your Event?
+            </h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Let's create something amazing together. Book your photography and
+              videography services today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/booking"
+                className="bg-white text-black px-8 py-3 font-bebas text-lg hover:bg-gray-200 transition-colors duration-300">
+                Book Your Event
+              </Link>
+              <Link
+                href="/contact"
+                className="bg-transparent text-white px-8 py-3 font-bebas text-lg hover:bg-white hover:text-black transition-colors duration-300 border-2 border-white">
+                Get a Quote
               </Link>
             </div>
           </div>

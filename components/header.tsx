@@ -88,7 +88,19 @@ const HeaderComponent = () => {
                   </Link>
                 </motion.li>
               ))}
-              <motion.li className="mt-6">
+              <motion.li className="mt-6 flex flex-col gap-4">
+                <Link href="/booking" onClick={() => setShowMenu(false)}>
+                  <motion.button
+                    whileHover={{
+                      scale: 1.05,
+                      backgroundColor: "rgba(255,255,255,1)",
+                      color: "#000",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    className="font-bebas bg-white text-black rounded-full px-6 py-2 text-base tracking-wider transition-all duration-300">
+                    Book Now
+                  </motion.button>
+                </Link>
                 <Link href="/contact" onClick={() => setShowMenu(false)}>
                   <motion.button
                     whileHover={{
@@ -114,18 +126,32 @@ const HeaderComponent = () => {
             {showMenu ? "Close" : "Menu"}
           </motion.button>
 
-          <Link href="/contact" className="hidden md:block">
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "rgba(255,255,255,1)",
-                color: "#000",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="font-bebas border border-white/70 rounded-full px-5 py-1.5 text-white text-sm tracking-wider transition-all duration-300">
-              Contact Us
-            </motion.button>
-          </Link>
+          <div className="hidden md:flex items-center gap-3">
+            <Link href="/booking">
+              <motion.button
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(255,255,255,1)",
+                  color: "#000",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="font-bebas bg-white text-black rounded-full px-5 py-1.5 text-sm tracking-wider transition-all duration-300">
+                Book Now
+              </motion.button>
+            </Link>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(255,255,255,1)",
+                  color: "#000",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="font-bebas border border-white/70 rounded-full px-5 py-1.5 text-white text-sm tracking-wider transition-all duration-300">
+                Contact Us
+              </motion.button>
+            </Link>
+          </div>
         </div>
       </div>
     </motion.header>

@@ -160,11 +160,18 @@ export default async function ServicePage({ params }: Props) {
                 We&apos;re here to help with your project
               </p>
             </div>
-            <Link
-              href="/contact"
-              className="mt-4 sm:mt-0 inline-block bg-black text-white font-bebas px-6 py-3 rounded-md hover:bg-gray-800 transition">
-              Contact us
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 mt-4 sm:mt-0">
+              <Link
+                href="/booking"
+                className="inline-block bg-white text-black font-bebas px-6 py-3 rounded-md hover:bg-gray-200 transition border-2 border-black">
+                Book This Service
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-block bg-black text-white font-bebas px-6 py-3 rounded-md hover:bg-gray-800 transition">
+                Contact us
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -2,12 +2,13 @@ export const revalidate = 0;
 
 import HomeScreen from "@/components/home/homeSection";
 import { urlFor } from "@/sanity/lib/image";
-import { getExpertisesWithLimit } from "@/sanity/queries/expertise";
+import { getOrderedExpertises } from "@/sanity/queries/expertise";
+import { Expertises } from "@/sanity.types";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const Expertises = await getExpertisesWithLimit(2);
+  const Expertises: Expertises[] = await getOrderedExpertises();
 
   return (
     <main className="no-scrollbar w-screen">
@@ -46,6 +47,33 @@ export default async function Home() {
                 </Link>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Booking CTA Section */}
+      <section className="bg-black text-white py-16">
+        <div className="px-6 sm:px-24 w-full h-full">
+          <div className="text-center mb-8">
+            <h2 className="text-5xl font-bebas mb-4">
+              Ready to Create Something Amazing?
+            </h2>
+            <p className="text-lg max-w-2xl mx-auto mb-8">
+              Let's bring your vision to life with professional photography and
+              videography services
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/booking"
+                className="bg-white text-black px-8 py-4 font-bebas text-xl hover:bg-gray-200 transition-colors duration-300 border-2 border-white">
+                Book Your Event
+              </Link>
+              <Link
+                href="/contact"
+                className="bg-transparent text-white px-8 py-4 font-bebas text-xl hover:bg-white hover:text-black transition-colors duration-300 border-2 border-white">
+                Get a Quote
+              </Link>
+            </div>
           </div>
         </div>
       </section>

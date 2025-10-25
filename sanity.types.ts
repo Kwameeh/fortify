@@ -136,37 +136,40 @@ export type Expertises = {
   slug?: Slug;
   tagline?: string;
   excerpt?: string;
-  body?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }>;
+  body?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+        listItem?: "bullet";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  >;
   link?: string;
   image?: {
     asset?: {
@@ -181,6 +184,7 @@ export type Expertises = {
     alt?: string;
     _type: "image";
   };
+  order?: number;
 };
 
 export type Hero = {
@@ -283,82 +287,93 @@ export type Page = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  pageBuilder?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "hero";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "textWithIllustration";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "gallery";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "form";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "video";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "promotion";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "sectionImageOverlay";
-  }>;
+  pageBuilder?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "hero";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "textWithIllustration";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "gallery";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "form";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "video";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "promotion";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        _key: string;
+        [internalGroqTypeReferenceTo]?: "sectionImageOverlay";
+      }
+  >;
 };
 
-export type BlockContent = Array<{
-  children?: Array<{
-    marks?: Array<string>;
-    text?: string;
-    _type: "span";
-    _key: string;
-  }>;
-  style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
-  listItem?: "bullet";
-  markDefs?: Array<{
-    href?: string;
-    _type: "link";
-    _key: string;
-  }>;
-  level?: number;
-  _type: "block";
-  _key: string;
-} | {
-  asset?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-  };
-  media?: unknown;
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-  _key: string;
-}>;
+export type BlockContent = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+      listItem?: "bullet";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+      _key: string;
+    }
+>;
 
 export type Category = {
   _id: string;
@@ -536,7 +551,32 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Project | Promotion | Expertises | Hero | Form | Video | TextWithIllustration | SectionImageOverlay | Page | BlockContent | Category | Gallery | Post | Author | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Slug;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | Project
+  | Promotion
+  | Expertises
+  | Hero
+  | Form
+  | Video
+  | TextWithIllustration
+  | SectionImageOverlay
+  | Page
+  | BlockContent
+  | Category
+  | Gallery
+  | Post
+  | Author
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/queries/expertise.ts
 // Variable: ALL_EXPERTISES_QUERY
@@ -564,37 +604,40 @@ export type EXPERTISE_BY_SLUG_QUERYResult = {
   slug: Slug | null;
   tagline: string | null;
   excerpt: string | null;
-  body: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
-    listItem?: "bullet";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    alt?: string;
-    _type: "image";
-    _key: string;
-  }> | null;
+  body: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+        listItem?: "bullet";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+        _key: string;
+      }
+  > | null;
   link: string | null;
   image: {
     asset: {
@@ -1194,28 +1237,30 @@ export type FEATURED_PROJECTS_QUERYResult = Array<{
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"expertises\"]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  link,\n  image {\n    asset->{\n      _id,\n      url\n    },\n    alt\n  }\n}": ALL_EXPERTISES_QUERYResult;
-    "*[_type == \"expertises\" && slug.current == $slug][0]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  body,\n  link,\n  image {\n    asset->{\n      _id,\n      url\n    },\n    alt\n  }\n}": EXPERTISE_BY_SLUG_QUERYResult;
-    "*[_type == \"expertises\"][0...3]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  link,\n  image {\n    asset->{\n      _id,\n      url\n    },\n    alt\n  }\n}": FEATURED_EXPERTISES_QUERYResult;
-    "*[_type == \"expertises\"][0...$limit]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  link,\n  image\n}": EXPERTISES_LIMIT_QUERYResult;
-    "*[_type == \"gallery\" && defined(slug.current)] {\n    _id,\n    title,\n    pageType,\n    slug,\n    \"imageCount\": count(images)\n  }": ALL_GALLERIES_QUERYResult;
-    "*[_type == \"gallery\" && pageType == $pageType] {\n    _id,\n    title,\n    pageType,\n    slug,\n    \"imageCount\": count(images)\n  }": GALLERIES_BY_PAGE_TYPE_QUERYResult;
-    "*[_type == \"gallery\" && slug.current == $slug][0] {\n    _id,\n    title,\n    pageType,\n    slug,\n    images[] {\n      _key,\n      asset->,\n      alt\n    }\n  }": GALLERY_BY_SLUG_QUERYResult;
-    "*[_type == \"gallery\" && defined(slug.current)] {\n    \"slug\": slug.current\n  }": GALLERY_SLUGS_QUERYResult;
-    "*[_type == \"gallery\" && defined(slug.current)][0...3] {\n    _id,\n    title,\n    pageType,\n    slug,\n    \"featuredImage\": images[0] {\n      _key,\n      asset->,\n      alt\n    }\n  }": FEATURED_GALLERIES_QUERYResult;
-    "*[_type == \"page\" && slug.current == $slug][0]{\n    _id,\n    title,\n    slug,\n    // Basic content for all component types\n    pageBuilder[]{\n      _type,\n      _key,\n      _ref\n    },\n    // Expanded references for each component type\n    \"hero\": pageBuilder[_type == \"hero\"][0]{\n      ...*[_type == \"hero\" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    \"textWithIllustration\": pageBuilder[_type == \"textWithIllustration\"][0]{\n      ...*[_type == \"textWithIllustration\" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    \"gallery\": pageBuilder[_type == \"galleryReference\"][0]{\n      ...*[_type == \"gallery\" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    \"form\": pageBuilder[_type == \"form\"][0]{\n      ...*[_type == \"form\" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    \"video\": pageBuilder[_type == \"videoReference\"][0]{\n      ...*[_type == \"video\" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    \"promotion\": pageBuilder[_type == \"callToAction\"][0]{\n      ...*[_type == \"promotion\" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    \"sectionImageOverlay\": pageBuilder[_type == \"sectionImageOverlay\"][0]{\n      ...*[_type == \"sectionImageOverlay\" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    }\n  }": PageBySlugQueryResult | PageBySlugQueryCResult;
-    "*[_type == \"page\"]{\n    _id,\n    title,\n    slug\n  }": AllPagesQueryResult;
-    "*[_type == \"page\" && defined(slug.current)][]{\n    \"params\": { \"slug\": slug.current }\n  }": AllPagePathsQueryResult;
-    "*[_type == \"post\" && defined(slug.current)] | order(publishedAt desc) {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}": POSTS_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current)] {\n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
-    "*[_type == \"post\" && slug.current == $slug][0] {\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}": POST_BY_SLUG_QUERYResult;
-    "*[_type == \"post\" && $categoryId in categories[]._ref] | order(publishedAt desc) {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}": POSTS_BY_CATEGORY_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current)] | order(publishedAt desc)[0...3] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}": FEATURED_POSTS_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current)] | order(publishedAt desc)[$start...$end] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}": PAGINATED_POSTS_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current) && title match $searchTerm] | order(publishedAt desc) {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}": SEARCH_POSTS_QUERYResult;
-    "*[_type == \"post\" && defined(slug.current) && _id != $postId && count((categories[]->_id)[@ in $categoryIds]) > 0] | order(publishedAt desc)[0...4] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  \"categories\": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}": RELATED_POSTS_QUERYResult;
-    "*[_type == \"project\" && defined(slug.current)]{\n  _id, \n  projectname, \n  slug,\n  tagline,\n  services[]->{\n    _id,\n    name\n  },\n \n  excerpt,\n  location,\n  mainImage,\n  Images[]{\n    ...,\n    asset->{\n      url\n    }\n  }\n}": ALL_PROJECTS_QUERYResult;
-    "*[_type == \"project\" && slug.current == $slug][0]{\n  _id,\n  projectname,\n  slug,\n  tagline,\n  services[]->{\n    _id,\n    name\n  },\n  excerpt,\n  description,\n  location,\n  url,\n  mainImage,\n  Images[]{\n    ...,\n    asset->{\n      url\n    }\n  }\n}": PROJECT_BY_SLUG_QUERYResult;
-    "*[_type == \"project\" && defined(slug.current)][0...3]{\n  _id,\n  projectname,\n  slug,\n  tagline,\n  excerpt,\n  mainImage\n}": FEATURED_PROJECTS_QUERYResult;
+    '*[_type == "expertises"]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  link,\n  image {\n    asset->{\n      _id,\n      url\n    },\n    alt\n  }\n}': ALL_EXPERTISES_QUERYResult;
+    '*[_type == "expertises" && slug.current == $slug][0]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  body,\n  link,\n  image {\n    asset->{\n      _id,\n      url\n    },\n    alt\n  }\n}': EXPERTISE_BY_SLUG_QUERYResult;
+    '*[_type == "expertises"][0...3]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  link,\n  image {\n    asset->{\n      _id,\n      url\n    },\n    alt\n  }\n}': FEATURED_EXPERTISES_QUERYResult;
+    '*[_type == "expertises"][0...$limit]{\n  _id,\n  heading,\n  slug,\n  tagline,\n  excerpt,\n  link,\n  image\n}': EXPERTISES_LIMIT_QUERYResult;
+    '*[_type == "gallery" && defined(slug.current)] {\n    _id,\n    title,\n    pageType,\n    slug,\n    "imageCount": count(images)\n  }': ALL_GALLERIES_QUERYResult;
+    '*[_type == "gallery" && pageType == $pageType] {\n    _id,\n    title,\n    pageType,\n    slug,\n    "imageCount": count(images)\n  }': GALLERIES_BY_PAGE_TYPE_QUERYResult;
+    '*[_type == "gallery" && slug.current == $slug][0] {\n    _id,\n    title,\n    pageType,\n    slug,\n    images[] {\n      _key,\n      asset->,\n      alt\n    }\n  }': GALLERY_BY_SLUG_QUERYResult;
+    '*[_type == "gallery" && defined(slug.current)] {\n    "slug": slug.current\n  }': GALLERY_SLUGS_QUERYResult;
+    '*[_type == "gallery" && defined(slug.current)][0...3] {\n    _id,\n    title,\n    pageType,\n    slug,\n    "featuredImage": images[0] {\n      _key,\n      asset->,\n      alt\n    }\n  }': FEATURED_GALLERIES_QUERYResult;
+    '*[_type == "page" && slug.current == $slug][0]{\n    _id,\n    title,\n    slug,\n    // Basic content for all component types\n    pageBuilder[]{\n      _type,\n      _key,\n      _ref\n    },\n    // Expanded references for each component type\n    "hero": pageBuilder[_type == "hero"][0]{\n      ...*[_type == "hero" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    "textWithIllustration": pageBuilder[_type == "textWithIllustration"][0]{\n      ...*[_type == "textWithIllustration" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    "gallery": pageBuilder[_type == "galleryReference"][0]{\n      ...*[_type == "gallery" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    "form": pageBuilder[_type == "form"][0]{\n      ...*[_type == "form" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    "video": pageBuilder[_type == "videoReference"][0]{\n      ...*[_type == "video" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    "promotion": pageBuilder[_type == "callToAction"][0]{\n      ...*[_type == "promotion" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    },\n    "sectionImageOverlay": pageBuilder[_type == "sectionImageOverlay"][0]{\n      ...*[_type == "sectionImageOverlay" && _id == ^._ref][0]{\n        _id,\n        _type,\n        _key,\n        ...\n      }\n    }\n  }':
+      | PageBySlugQueryResult
+      | PageBySlugQueryCResult;
+    '*[_type == "page"]{\n    _id,\n    title,\n    slug\n  }': AllPagesQueryResult;
+    '*[_type == "page" && defined(slug.current)][]{\n    "params": { "slug": slug.current }\n  }': AllPagePathsQueryResult;
+    '*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  "categories": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}': POSTS_QUERYResult;
+    '*[_type == "post" && defined(slug.current)] {\n  "slug": slug.current\n}': POSTS_SLUGS_QUERYResult;
+    '*[_type == "post" && slug.current == $slug][0] {\n  _id,\n  title,\n  body,\n  mainImage,\n  publishedAt,\n  "categories": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}': POST_BY_SLUG_QUERYResult;
+    '*[_type == "post" && $categoryId in categories[]._ref] | order(publishedAt desc) {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  "categories": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}': POSTS_BY_CATEGORY_QUERYResult;
+    '*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[0...3] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  "categories": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}': FEATURED_POSTS_QUERYResult;
+    '*[_type == "post" && defined(slug.current)] | order(publishedAt desc)[$start...$end] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  "categories": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}': PAGINATED_POSTS_QUERYResult;
+    '*[_type == "post" && defined(slug.current) && title match $searchTerm] | order(publishedAt desc) {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  "categories": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}': SEARCH_POSTS_QUERYResult;
+    '*[_type == "post" && defined(slug.current) && _id != $postId && count((categories[]->_id)[@ in $categoryIds]) > 0] | order(publishedAt desc)[0...4] {\n  _id,\n  title,\n  slug,\n  mainImage,\n  publishedAt,\n  "categories": categories[]->{ \n    _id,\n    title,\n    slug\n  },\n  author->{ \n    name,\n    image\n  }\n}': RELATED_POSTS_QUERYResult;
+    '*[_type == "project" && defined(slug.current)]{\n  _id, \n  projectname, \n  slug,\n  tagline,\n  services[]->{\n    _id,\n    name\n  },\n \n  excerpt,\n  location,\n  mainImage,\n  Images[]{\n    ...,\n    asset->{\n      url\n    }\n  }\n}': ALL_PROJECTS_QUERYResult;
+    '*[_type == "project" && slug.current == $slug][0]{\n  _id,\n  projectname,\n  slug,\n  tagline,\n  services[]->{\n    _id,\n    name\n  },\n  excerpt,\n  description,\n  location,\n  url,\n  mainImage,\n  Images[]{\n    ...,\n    asset->{\n      url\n    }\n  }\n}': PROJECT_BY_SLUG_QUERYResult;
+    '*[_type == "project" && defined(slug.current)][0...3]{\n  _id,\n  projectname,\n  slug,\n  tagline,\n  excerpt,\n  mainImage\n}': FEATURED_PROJECTS_QUERYResult;
   }
 }
