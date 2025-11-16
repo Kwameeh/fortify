@@ -64,13 +64,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${expertise.heading} | Our Services`,
+    title: `${expertise.heading} | LCD Screen Rental & Stage Lighting Services Ghana`,
     description:
-      expertise.excerpt || expertise.tagline || "Our professional services",
+      expertise.excerpt || expertise.tagline
+        ? `${expertise.excerpt || expertise.tagline} - Professional LCD screen rental and stage lighting services in Ghana. Located in Accra.`
+        : "Professional LCD screen rental and stage lighting services in Ghana. Premium equipment for events in Accra.",
+    keywords: [
+      `${expertise.heading} Ghana`,
+      "LCD screen rental Ghana",
+      "stage lighting Ghana",
+      "event equipment rental Accra",
+      "audio visual services Ghana",
+    ],
     openGraph: {
-      title: expertise.heading || "",
-      description: expertise.excerpt || expertise.tagline || "",
+      title: `${expertise.heading} | LCD Screen Rental & Stage Lighting Ghana`,
+      description:
+        expertise.excerpt || expertise.tagline || "Professional event equipment services in Ghana",
       images: expertise.image ? [urlFor(expertise.image).url()] : [],
+      locale: "en_GH",
+      type: "website",
     },
   };
 }

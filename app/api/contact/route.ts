@@ -72,12 +72,12 @@ export async function POST(request: NextRequest) {
           <div style="background-color: #000; color: #fff; padding: 20px; margin: 20px 0; border-radius: 5px;">
             <h3 style="color: #fff; margin-top: 0;">Our Services</h3>
             <ul style="color: #fff;">
-              <li>Professional Photography</li>
-              <li>Videography & Live Streaming</li>
-              <li>Event Production</li>
-              <li>Drone Services</li>
+              <li>LCD Screen Rental</li>
+              <li>Stage Lighting Services</li>
+              <li>Audio Visual Setup</li>
+              <li>Full Production Equipment</li>
               <li>Corporate Events</li>
-              <li>Weddings & Special Occasions</li>
+              <li>Custom Equipment Packages</li>
             </ul>
           </div>
 

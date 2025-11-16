@@ -144,17 +144,17 @@ const FooterComponent = () => {
         <div className="bg-gray-900 rounded-lg p-8 mt-8 mb-8">
           <div className="text-center">
             <h3 className="text-3xl font-bebas mb-4">
-              Ready to Book Your Event?
+              Ready to Book LCD Screen & Stage Lighting?
             </h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Let's create something amazing together. Book your photography and
-              videography services today.
+              Let's create something amazing together. Book your LCD screen
+              rental and stage lighting services today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/booking"
                 className="bg-white text-black px-8 py-3 font-bebas text-lg hover:bg-gray-200 transition-colors duration-300">
-                Book Your Event
+                Book Equipment
               </Link>
               <Link
                 href="/contact"

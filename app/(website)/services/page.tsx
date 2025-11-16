@@ -10,6 +10,27 @@ import { getGalleryBySlug } from "@/sanity/queries/gallery";
 import Image from "next/image";
 import Link from "next/link";
 import Marquee from "react-fast-marquee";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our Services | LCD Screen Rental & Stage Lighting Equipment",
+  description:
+    "Explore our comprehensive range of LCD screen rental and stage lighting services in Ghana. Professional equipment for events, productions, weddings, and corporate functions in Accra.",
+  keywords: [
+    "LCD screen rental services Ghana",
+    "stage lighting equipment Ghana",
+    "event equipment rental Accra",
+    "audio visual services Ghana",
+    "production equipment hire",
+    "event staging services Ghana",
+  ],
+  openGraph: {
+    title: "Our Services | LCD Screen Rental & Stage Lighting Equipment",
+    description:
+      "Professional LCD screen rental and stage lighting services in Ghana for all your event needs.",
+    type: "website",
+  },
+};
 
 const ServicesPage = async () => {
   const expertises = await getAllExpertises();
@@ -75,17 +96,17 @@ const ServicesPage = async () => {
         <div className="px-6 sm:px-24 w-full h-full">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bebas mb-4">
-              Ready to Book Your Event?
+              Ready to Book LCD Screen & Stage Lighting?
             </h2>
             <p className="text-lg max-w-2xl mx-auto mb-8">
-              Choose from our professional services and let us capture your
-              special moments
+              Choose from our professional equipment rental services and let us
+              enhance your event with premium LCD screens and stage lighting
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/booking"
                 className="bg-black text-white px-8 py-4 font-bebas text-xl hover:bg-gray-800 transition-colors duration-300">
-                Book Now
+                Book Equipment Now
               </Link>
               <Link
                 href="/contact"

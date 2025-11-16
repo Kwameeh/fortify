@@ -8,6 +8,27 @@ import Link from "next/link";
 import React from "react";
 import Marquee from "react-fast-marquee";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our Works | Portfolio - LCD Screen Rental & Stage Lighting Ghana",
+  description:
+    "View our portfolio of LCD screen rental and stage lighting projects in Ghana. Professional event equipment installations for weddings, corporate events, conferences, and productions in Accra and throughout Ghana.",
+  keywords: [
+    "LCD screen rental portfolio Ghana",
+    "stage lighting projects Ghana",
+    "event equipment installations Accra",
+    "production portfolio Ghana",
+    "event staging examples",
+    "audio visual projects Ghana",
+  ],
+  openGraph: {
+    title: "Our Works | Portfolio - LCD Screen Rental & Stage Lighting Ghana",
+    description:
+      "View our professional portfolio of LCD screen rental and stage lighting projects in Ghana.",
+    type: "website",
+  },
+};
 
 const WorksPage = async () => {
   const projects = await getAllProjects();
@@ -122,7 +143,7 @@ const WorksPage = async () => {
                 <Link
                   href="/booking"
                   className="px-6 font-bebas py-3 w-fit bg-white text-black text-xl hover:bg-gray-200 duration-300">
-                  Book Your Event
+                  Book LCD Screen & Stage Lighting
                 </Link>
                 <Link
                   href="/contact"
