@@ -64,20 +64,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${expertise.heading} | LCD Screen Rental & Stage Lighting Services Ghana`,
+    title: `${expertise.heading} | LED Screen Rental & Stage Lighting Services Ghana`,
     description:
       expertise.excerpt || expertise.tagline
-        ? `${expertise.excerpt || expertise.tagline} - Professional LCD screen rental and stage lighting services in Ghana. Located in Accra.`
-        : "Professional LCD screen rental and stage lighting services in Ghana. Premium equipment for events in Accra.",
+        ? `${expertise.excerpt || expertise.tagline} - Professional LED screen rental and stage lighting services in Ghana. Located in Accra.`
+        : "Professional LED screen rental and stage lighting services in Ghana. Premium equipment for events in Accra.",
     keywords: [
       `${expertise.heading} Ghana`,
-      "LCD screen rental Ghana",
+      "LED screen rental Ghana",
       "stage lighting Ghana",
       "event equipment rental Accra",
       "audio visual services Ghana",
     ],
     openGraph: {
-      title: `${expertise.heading} | LCD Screen Rental & Stage Lighting Ghana`,
+      title: `${expertise.heading} | LED Screen Rental & Stage Lighting Ghana`,
       description:
         expertise.excerpt || expertise.tagline || "Professional event equipment services in Ghana",
       images: expertise.image ? [urlFor(expertise.image).url()] : [],

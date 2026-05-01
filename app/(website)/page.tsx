@@ -10,11 +10,11 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title:
-    "LCD Screen Rental & Stage Lighting Services in Ghana | Fortify Productions",
+    "LED Screen Rental & Stage Lighting Services in Ghana | Fortify Productions",
   description:
-    "Fortify Productions offers professional LCD screen rental and stage lighting services in Ghana. Located in Accra, we provide premium audio-visual equipment for weddings, corporate events, conferences, and productions. Contact us today for your event needs!",
+    "Fortify Productions offers professional LED screen rental and stage lighting services in Ghana. Located in Accra, we provide premium audio-visual equipment for weddings, corporate events, conferences, and productions. Contact us today for your event needs!",
   keywords: [
-    "LCD screen rental Ghana",
+    "LED screen rental Ghana",
     "stage lighting Ghana",
     "event equipment rental Accra",
     "LED screen hire Ghana",
@@ -27,18 +27,18 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title:
-      "LCD Screen Rental & Stage Lighting Services in Ghana | Fortify Productions",
+      "LED Screen Rental & Stage Lighting Services in Ghana | Fortify Productions",
     description:
-      "Professional LCD screen rental and stage lighting services in Accra, Ghana. Premium equipment for all your event needs.",
+      "Professional LED screen rental and stage lighting services in Accra, Ghana. Premium equipment for all your event needs.",
     type: "website",
     locale: "en_GH",
     url: "https://fortifyproductions.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "LCD Screen Rental & Stage Lighting Services in Ghana",
+    title: "LED Screen Rental & Stage Lighting Services in Ghana",
     description:
-      "Professional LCD screen rental and stage lighting services in Accra, Ghana.",
+      "Professional LED screen rental and stage lighting services in Accra, Ghana.",
   },
 };
 
@@ -94,14 +94,14 @@ export default async function Home() {
               Ready to Create Something Amazing?
             </h2>
             <p className="text-lg max-w-2xl mx-auto mb-8">
-              Let's bring your vision to life with professional LCD screen
+              Let's bring your vision to life with professional LED screen
               rental and stage lighting services
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/booking"
                 className="bg-white text-black px-8 py-4 font-bebas text-xl hover:bg-gray-200 transition-colors duration-300 border-2 border-white">
-                Book LCD Screen & Stage Lighting
+                Book LED Screen & Stage Lighting
               </Link>
               <Link
                 href="/contact"

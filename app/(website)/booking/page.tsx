@@ -3,21 +3,21 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Book LCD Screen & Stage Lighting Equipment | Ghana",
+  title: "Book LED Screen & Stage Lighting Equipment | Ghana",
   description:
-    "Book your LCD screen rental and stage lighting equipment in Ghana. Fill out our booking form for events in Accra and throughout Ghana. Professional equipment for weddings, corporate events, and productions.",
+    "Book your LED screen rental and stage lighting equipment in Ghana. Fill out our booking form for events in Accra and throughout Ghana. Professional equipment for weddings, corporate events, and productions.",
   keywords: [
-    "book LCD screen rental Ghana",
+    "book LED screen rental Ghana",
     "stage lighting booking Accra",
     "rent equipment Ghana",
     "event equipment booking",
-    "LCD screen hire Ghana",
+    "LED screen hire Ghana",
     "lighting rental booking",
   ],
   openGraph: {
-    title: "Book LCD Screen & Stage Lighting Equipment | Fortify Productions",
+    title: "Book LED Screen & Stage Lighting Equipment | Fortify Productions",
     description:
-      "Book professional LCD screen rental and stage lighting equipment for your event in Ghana.",
+      "Book professional LED screen rental and stage lighting equipment for your event in Ghana.",
     type: "website",
   },
 };
@@ -28,13 +28,13 @@ export default function Booking() {
       <section className="w-full h-[500px] relative mb-16 overflow-hidden rounded-lg">
         <Image
           src="/images/light.jpeg"
-          alt="Book LCD Screen & Stage Lighting with Fortify Productions"
+          alt="Book LED Screen & Stage Lighting with Fortify Productions"
           fill
           className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <h1 className="text-6xl font-bebas text-white">Book LCD Screen & Stage Lighting</h1>
+          <h1 className="text-6xl font-bebas text-white">Book LED Screen & Stage Lighting</h1>
         </div>
       </section>
 
@@ -60,7 +60,7 @@ export default function Booking() {
               </div>
               <h3 className="text-xl font-bebas mb-2">Years Experience</h3>
               <p className="text-gray-600">
-                Professional LCD screen rental and stage lighting services with
+                Professional LED screen rental and stage lighting services with
                 years of industry experience
               </p>
             </div>

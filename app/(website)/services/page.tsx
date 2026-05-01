@@ -13,11 +13,11 @@ import Marquee from "react-fast-marquee";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Services | LCD Screen Rental & Stage Lighting Equipment",
+  title: "Our Services | LED Screen Rental & Stage Lighting Equipment",
   description:
-    "Explore our comprehensive range of LCD screen rental and stage lighting services in Ghana. Professional equipment for events, productions, weddings, and corporate functions in Accra.",
+    "Explore our comprehensive range of LED screen rental and stage lighting services in Ghana. Professional equipment for events, productions, weddings, and corporate functions in Accra.",
   keywords: [
-    "LCD screen rental services Ghana",
+    "LED screen rental services Ghana",
     "stage lighting equipment Ghana",
     "event equipment rental Accra",
     "audio visual services Ghana",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     "event staging services Ghana",
   ],
   openGraph: {
-    title: "Our Services | LCD Screen Rental & Stage Lighting Equipment",
+    title: "Our Services | LED Screen Rental & Stage Lighting Equipment",
     description:
-      "Professional LCD screen rental and stage lighting services in Ghana for all your event needs.",
+      "Professional LED screen rental and stage lighting services in Ghana for all your event needs.",
     type: "website",
   },
 };
@@ -96,11 +96,11 @@ const ServicesPage = async () => {
         <div className="px-6 sm:px-24 w-full h-full">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bebas mb-4">
-              Ready to Book LCD Screen & Stage Lighting?
+              Ready to Book LED Screen & Stage Lighting?
             </h2>
             <p className="text-lg max-w-2xl mx-auto mb-8">
               Choose from our professional equipment rental services and let us
-              enhance your event with premium LCD screens and stage lighting
+              enhance your event with premium LED screens and stage lighting
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

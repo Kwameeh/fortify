@@ -102,7 +102,7 @@ const BookingForm = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <div className="text-center mb-8">
-        <h2 className="text-4xl font-bebas mb-4">Book LCD Screen & Stage Lighting</h2>
+        <h2 className="text-4xl font-bebas mb-4">Book LED Screen & Stage Lighting</h2>
         <p className="text-lg text-gray-600">
           Tell us about your event and we'll provide the perfect equipment to
           bring your vision to life
@@ -209,10 +209,10 @@ const BookingForm = () => {
                 className="w-full px-4 py-3 border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
                 required>
                 <option value="">Select Service</option>
-                <option value="lcd-screen-rental">LCD Screen Rental</option>
+                <option value="led-screen-rental">LED Screen Rental</option>
                 <option value="stage-lighting">Stage Lighting</option>
-                <option value="lcd-lighting-package">
-                  LCD Screen + Stage Lighting Package
+                <option value="led-lighting-package">
+                  LED Screen + Stage Lighting Package
                 </option>
                 <option value="audio-visual">Audio Visual Setup</option>
                 <option value="full-production">Full Production Equipment</option>

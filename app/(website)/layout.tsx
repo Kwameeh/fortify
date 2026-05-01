@@ -10,11 +10,11 @@ const myFont = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Fortify Productions | LCD Screen Rental & Stage Lighting Ghana",
+    default: "Fortify Productions | LED Screen Rental & Stage Lighting Ghana",
     template: "%s | Fortify Productions",
   },
   description:
-    "Professional LCD screen rental and stage lighting services in Ghana. Premium audio-visual equipment for events in Accra and throughout Ghana.",
+    "Professional LED screen rental and stage lighting services in Ghana. Premium audio-visual equipment for events in Accra and throughout Ghana.",
 };
 
 export default function RootLayout({

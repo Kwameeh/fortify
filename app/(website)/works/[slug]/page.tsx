@@ -21,20 +21,20 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.projectname || "Untitled Project"} | LCD Screen Rental & Stage Lighting Projects Ghana`,
+    title: `${project.projectname || "Untitled Project"} | LED Screen Rental & Stage Lighting Projects Ghana`,
     description:
       project.excerpt
-        ? `${project.excerpt} - Professional LCD screen rental and stage lighting installation in ${project.location || "Ghana"}.`
-        : `Professional LCD screen rental and stage lighting project${project.location ? ` in ${project.location}` : " in Ghana"}.`,
+        ? `${project.excerpt} - Professional LED screen rental and stage lighting installation in ${project.location || "Ghana"}.`
+        : `Professional LED screen rental and stage lighting project${project.location ? ` in ${project.location}` : " in Ghana"}.`,
     keywords: [
       `${project.projectname} Ghana`,
-      "LCD screen rental project",
+      "LED screen rental project",
       "stage lighting installation Ghana",
       "event equipment installation",
       project.location ? `event services ${project.location}` : "event services Ghana",
     ],
     openGraph: {
-      title: `${project.projectname || "Untitled Project"} | LCD Screen Rental & Stage Lighting Ghana`,
+      title: `${project.projectname || "Untitled Project"} | LED Screen Rental & Stage Lighting Ghana`,
       description: project.excerpt || "Professional event equipment installation project in Ghana",
       images: project.mainImage
         ? [
@@ -42,7 +42,7 @@ export async function generateMetadata({
               url: urlFor(project.mainImage).url(),
               width: 1200,
               height: 630,
-              alt: project.projectname || "LCD Screen Rental & Stage Lighting Project Ghana",
+              alt: project.projectname || "LED Screen Rental & Stage Lighting Project Ghana",
             },
           ]
         : [],
@@ -192,7 +192,7 @@ export default async function ProjectPage({
                 <Link
                   href="/booking"
                   className="inline-block px-6 font-bebas py-3 w-fit bg-white text-black text-xl hover:bg-gray-200 duration-300">
-                  Book LCD Screen & Stage Lighting
+                  Book LED Screen & Stage Lighting
                 </Link>
                 <Link
                   href="/contact"
